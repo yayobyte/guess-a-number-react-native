@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Alert, Text, View} from 'react-native';
 import {BodyText} from '../components/ui/body-text/body-text';
-import {Card} from '../components/ui/card/card';
 import {Number} from '../components/number/number';
 import {PageTitle} from '../components/ui/page-title/page-title';
 import {generateRandomBetween} from '../utils/generate-random-between';
 import {styles} from './game-screen.styles';
 import {MainButton} from '../components/ui/main-button/main-button';
+import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { Theme } from '../theme/theme';
 
 type GameScreenProps = {
     userChoice: number,
@@ -58,14 +59,18 @@ export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) =
     return (
         <View style={styles.screen}>
             <PageTitle title={'Opponent\'s Guess'} />
-            <Number number={currentGuess} />
-            <View style={styles.cardContainer}>
-                <Card>
-                        <View style={styles.buttonContainer}>
-                            <MainButton title={'Lower'} onPress={() => nextGuessHandler(Direction.lower)}/>
-                            <MainButton title={'Greater'} onPress={() => nextGuessHandler(Direction.greater)}/>
-                        </View>
-                </Card>
+            <View style={styles.container}>
+                <Number number={currentGuess} />
+                <View style={styles.buttonContainer}>
+                    <MainButton
+                        onPress={() => nextGuessHandler(Direction.lower)}
+                        icon={<MaterialCommunityIcons name={'minus-circle'} size={Theme.fontSize.header}/>}
+                    />
+                    <MainButton
+                        onPress={() => nextGuessHandler(Direction.greater)}
+                        icon={<MaterialCommunityIcons name={'plus-circle'} size={Theme.fontSize.header}/>}
+                    />
+                </View>
             </View>
             <View style={styles.attemptsContainer}>
                 <BodyText>Number of attepmts</BodyText>

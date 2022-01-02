@@ -8,6 +8,8 @@ export const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         borderColor: Theme.colors.accent,
+        minWidth: 56,
+        alignItems: 'center',
     },
     primary: {
         fontSize: Theme.fontSize.header,

@@ -16,19 +16,21 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         maxWidth: '80%',
-        width: 300,
+        width: 200,
+        marginBottom: 32,
     },
-    cardContainer: {
+    container: {
         marginTop: 26,
         alignItems: 'center',
         justifyContent: 'center',
     },
     attemptsContainer: {
         marginVertical: 36,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     attempts: {
-        fontSize: 24,
+        fontSize: Theme.fontSize.header,
         color: Theme.colors.primary,
+        fontFamily: Theme.fontFamily.openSans,
     }
 })

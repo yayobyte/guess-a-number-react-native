@@ -21,5 +21,6 @@ export const styles = StyleSheet.create({
     },
     confirmationBox: {
         marginTop: 56,
+        alignItems: 'center',
     },
 })

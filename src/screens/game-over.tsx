@@ -5,6 +5,8 @@ import {Number} from '../components/number/number';
 import {PageTitle} from '../components/ui/page-title/page-title';
 import {BodyText} from '../components/ui/body-text/body-text';
 import {MainButton} from '../components/ui/main-button/main-button';
+import {MaterialCommunityIcons} from "@expo/vector-icons";
+import {Theme} from "../theme/theme";
 
 type GameOverProps = {
     rounds: number,
@@ -29,7 +31,11 @@ export const GameOver = ({ rounds, userNumber, startOverHandler }: GameOverProps
                     <Number number={userNumber} />
                 </View>
                 <View style={styles.primary}>
-                    <MainButton title={'Start Again'} onPress={startOverHandler}/>
+                    <MainButton
+                        title={'Start Again'}
+                        onPress={startOverHandler}
+                        icon={<MaterialCommunityIcons name={'play-circle-outline'} size={Theme.fontSize.paragraph} />}
+                    />
                 </View>
             </View>
         </ScrollView>

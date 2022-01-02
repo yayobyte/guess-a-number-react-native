@@ -7,6 +7,8 @@ import React, {useState} from "react";
 import {PageTitle} from "../components/ui/page-title/page-title";
 import {BodyText} from "../components/ui/body-text/body-text";
 import {MainButton, SecondaryButton} from "../components/ui/main-button/main-button";
+import {MaterialCommunityIcons} from '@expo/vector-icons'
+import {Theme} from "../theme/theme";
 
 type StartGameScreenProps = {
     setUserNumber: (userSelection: number) => void,
@@ -45,24 +47,36 @@ export const StartGameScreen = ({setUserNumber}: StartGameScreenProps) => {
             <View style={styles.screen}>
                 <PageTitle title={'Start a New Game!'}/>
                 <Card>
-                    <BodyText>Select a Number</BodyText>
+                    <BodyText>Input a 2 digit number</BodyText>
                     <Input value={enteredValue} onChange={onHandleChange}/>
                     <View style={styles.buttonContainer}>
                         <View style={styles.primary}>
-                            <SecondaryButton title={'Reset'} onPress={onResetHandler}/>
+                            <SecondaryButton
+                                title={'Reset'}
+                                onPress={onResetHandler}
+                                icon={<MaterialCommunityIcons name={'restart'} size={Theme.fontSize.paragraph} />}
+                            />
                         </View>
                         <View style={styles.primary}>
-                            <MainButton title={'Confirm'} onPress={() => onConfirmHandler()}/>
+                            <MainButton
+                                title={'Confirm'}
+                                onPress={() => onConfirmHandler()}
+                                icon={<MaterialCommunityIcons name={'check-outline'} size={Theme.fontSize.paragraph}/>}
+                            />
                         </View>
                     </View>
                 </Card>
                 {isConfirmed && selectedNumber && (
                     <View style={styles.confirmationBox}>
-                        <Card>
+
                             <BodyText>You Selected</BodyText>
                             <Number number={selectedNumber}/>
-                            <MainButton title={'START GAME'} onPress={() => setUserNumber(selectedNumber)}/>
-                        </Card>
+                            <MainButton
+                                title={'Start Game!'}
+                                onPress={() => setUserNumber(selectedNumber)}
+                                icon={<MaterialCommunityIcons name={'gamepad-up'} size={Theme.fontSize.paragraph} />}
+                            />
+
                     </View>
                 )}
             </View>

@@ -3,15 +3,13 @@ import {Theme} from "../../../theme/theme";
 
 export const styles = StyleSheet.create({
     container: {
-        padding: 8,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        flexDirection: 'row',
+        borderWidth: 2,
+        borderRadius: 6,
     },
-    primary: {
-        color: Theme.colors.primary,
-        fontFamily: Theme.fontFamily.openSans,
-        fontSize: Theme.fontSize.paragraph,
-    },
-    secondary: {
-        color: Theme.colors.accent,
+    buttonFont: {
         fontFamily: Theme.fontFamily.openSans,
         fontSize: Theme.fontSize.paragraph,
     }
