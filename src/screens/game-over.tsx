@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, Button, Image, ScrollView } from 'react-native';
-import { styles } from './game-over.styles';
-import { Number } from '../components/Number/number';
-import { Theme } from '../theme/theme';
-import { PageTitle } from '../components/page-title/page-title';
-import { BodyText } from '../components/body-text/body-text';
+import {Image, ScrollView, Text, View} from 'react-native';
+import {styles} from './game-over.styles';
+import {Number} from '../components/number/number';
+import {PageTitle} from '../components/ui/page-title/page-title';
+import {BodyText} from '../components/ui/body-text/body-text';
+import {MainButton} from '../components/ui/main-button/main-button';
 
 type GameOverProps = {
     rounds: number,
@@ -28,8 +28,8 @@ export const GameOver = ({ rounds, userNumber, startOverHandler }: GameOverProps
                     <BodyText>The number selected was</BodyText>
                     <Number number={userNumber} />
                 </View>
-                <View style={styles.button}>
-                    <Button title={'Start Again'} onPress={startOverHandler} color={Theme.colors.primary}/>
+                <View style={styles.primary}>
+                    <MainButton title={'Start Again'} onPress={startOverHandler}/>
                 </View>
             </View>
         </ScrollView>

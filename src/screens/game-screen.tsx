@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Alert } from 'react-native';
-import { BodyText } from '../components/body-text/body-text';
-import { Card } from '../components/card/card';
-import { Number } from '../components/Number/number';
-import { PageTitle } from '../components/page-title/page-title';
-import { Theme } from '../theme/theme';
-import { generateRandomBetween } from '../utils/generate-random-between';
-import { styles } from './game-screen.styles';
+import React, {useEffect, useState} from 'react';
+import {Alert, Text, View} from 'react-native';
+import {BodyText} from '../components/ui/body-text/body-text';
+import {Card} from '../components/ui/card/card';
+import {Number} from '../components/number/number';
+import {PageTitle} from '../components/ui/page-title/page-title';
+import {generateRandomBetween} from '../utils/generate-random-between';
+import {styles} from './game-screen.styles';
+import {MainButton} from '../components/ui/main-button/main-button';
 
 type GameScreenProps = {
     userChoice: number,
@@ -62,8 +62,8 @@ export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) =
             <View style={styles.cardContainer}>
                 <Card>
                         <View style={styles.buttonContainer}>
-                            <Button title={'Lower'} onPress={() => nextGuessHandler(Direction.lower)} color={Theme.colors.primary}/>
-                            <Button title={'Greater'} onPress={() => nextGuessHandler(Direction.greater)} color={Theme.colors.primary}/>
+                            <MainButton title={'Lower'} onPress={() => nextGuessHandler(Direction.lower)}/>
+                            <MainButton title={'Greater'} onPress={() => nextGuessHandler(Direction.greater)}/>
                         </View>
                 </Card>
             </View>

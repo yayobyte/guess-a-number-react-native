@@ -1,28 +1,18 @@
-import {
-    View,
-    Text,
-    Button,
-    NativeSyntheticEvent,
-    Keyboard,
-    TextInputChangeEventData,
-    TouchableWithoutFeedback,
-    Alert
-} from "react-native";
+import {Alert, Keyboard, TouchableWithoutFeedback, View} from "react-native";
 import {styles} from "./start-game-screen.styles";
-import {Card} from "../components/card/card";
-import {Number} from '../components/Number/number';
-import {Theme} from '../theme/theme'
+import {Card} from "../components/ui/card/card";
+import {Number} from '../components/number/number';
 import {Input} from "../components/input/input";
-import {useState} from "react";
-import React from "react";
-import { PageTitle } from "../components/page-title/page-title";
-import { BodyText } from "../components/body-text/body-text";
+import React, {useState} from "react";
+import {PageTitle} from "../components/ui/page-title/page-title";
+import {BodyText} from "../components/ui/body-text/body-text";
+import {MainButton, SecondaryButton} from "../components/ui/main-button/main-button";
 
 type StartGameScreenProps = {
     setUserNumber: (userSelection: number) => void,
 }
 
-export const StartGameScreen = ({ setUserNumber }: StartGameScreenProps) => {
+export const StartGameScreen = ({setUserNumber}: StartGameScreenProps) => {
     const [enteredValue, setEnteredValue] = useState('');
     const [isConfirmed, setIsConfirmed] = useState(false)
     const [selectedNumber, setSelectedNumber] = useState<number>()
@@ -41,7 +31,7 @@ export const StartGameScreen = ({ setUserNumber }: StartGameScreenProps) => {
             Alert.alert(
                 'Invalid',
                 'Number has to bve a 2 digit NUmber',
-                [{ text: 'Ok', style: 'destructive', onPress: onResetHandler }])
+                [{text: 'Ok', style: 'destructive', onPress: onResetHandler}])
             return
         }
         setIsConfirmed(true);
@@ -53,16 +43,16 @@ export const StartGameScreen = ({ setUserNumber }: StartGameScreenProps) => {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={styles.screen}>
-                <PageTitle title={'Start a New Game!'} />
+                <PageTitle title={'Start a New Game!'}/>
                 <Card>
                     <BodyText>Select a Number</BodyText>
                     <Input value={enteredValue} onChange={onHandleChange}/>
                     <View style={styles.buttonContainer}>
-                        <View style={styles.button}>
-                            <Button title={'Reset'} onPress={onResetHandler} color={Theme.colors.accent}/>
+                        <View style={styles.primary}>
+                            <SecondaryButton title={'Reset'} onPress={onResetHandler}/>
                         </View>
-                        <View style={styles.button}>
-                            <Button title={'Confirm'} onPress={() => onConfirmHandler()} color={Theme.colors.primary}/>
+                        <View style={styles.primary}>
+                            <MainButton title={'Confirm'} onPress={() => onConfirmHandler()}/>
                         </View>
                     </View>
                 </Card>
@@ -70,8 +60,8 @@ export const StartGameScreen = ({ setUserNumber }: StartGameScreenProps) => {
                     <View style={styles.confirmationBox}>
                         <Card>
                             <BodyText>You Selected</BodyText>
-                            <Number number={selectedNumber} />
-                            <Button title={'START GAME'} onPress={() => setUserNumber(selectedNumber)} color={Theme.colors.primary}/>
+                            <Number number={selectedNumber}/>
+                            <MainButton title={'START GAME'} onPress={() => setUserNumber(selectedNumber)}/>
                         </Card>
                     </View>
                 )}

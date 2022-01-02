@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 15
     },
-    button: {
+    primary: {
         marginHorizontal: 10,
     },
     confirmationBox: {

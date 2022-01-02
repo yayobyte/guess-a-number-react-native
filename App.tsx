@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StatusBar} from 'expo-status-bar';
 import {StyleSheet, View} from 'react-native';
-import {Header} from "./src/components/header/header";
+import {Header} from "./src/components/ui/header/header";
 import {StartGameScreen} from "./src/screens/start-game-screen";
 import {GameScreen} from './src/screens/game-screen';
 import {GameOver} from './src/screens/game-over';

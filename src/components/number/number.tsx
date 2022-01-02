@@ -8,6 +8,6 @@ type NumberProps = {
 
 export const Number = ({ number }: NumberProps) => (
     <View style={styles.container}>
-        <Text style={styles.text}>{number}</Text>
+        <Text style={styles.primary}>{number}</Text>
     </View>
 )

@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 24
     },
-    button: {
+    primary: {
         marginTop: 24,
         flex: 1,
         alignItems: 'center',

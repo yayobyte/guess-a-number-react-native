@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: Theme.colors.accent,
     },
-    text: {
+    primary: {
         fontSize: Theme.fontSize.header,
         fontFamily: Theme.fontFamily.openSansBold,
         color: Theme.colors.accent,
