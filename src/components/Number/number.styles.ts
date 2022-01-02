@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
         borderColor: Theme.colors.accent,
     },
     text: {
-        fontSize: 24,
+        fontSize: Theme.fontSize.header,
+        fontFamily: Theme.fontFamily.openSansBold,
         color: Theme.colors.accent,
     }
 })
