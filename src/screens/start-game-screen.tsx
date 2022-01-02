@@ -15,7 +15,11 @@ import {Theme} from '../theme/theme'
 import {Input} from "../components/input/input";
 import {useState} from "react";
 
-export const StartGameScreen = () => {
+type StartGameScreenProps = {
+    setUserNumber: (userSelection: number) => void,
+}
+
+export const StartGameScreen = ({ setUserNumber }: StartGameScreenProps) => {
     const [enteredValue, setEnteredValue] = useState('');
     const [isConfirmed, setIsConfirmed] = useState(false)
     const [selectedNumber, setSelectedNumber] = useState<number>()
@@ -40,12 +44,13 @@ export const StartGameScreen = () => {
         setIsConfirmed(true);
         setEnteredValue('');
         setSelectedNumber(chosenNumber)
+        Keyboard.dismiss();
     }
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={styles.screen}>
-                <Text style={styles.title}>The Game Screen</Text>
+                <Text style={styles.title}>Start a New Game!</Text>
                 <Card>
                     <Text>Select a Number</Text>
                     <Input value={enteredValue} onChange={onHandleChange}/>
@@ -61,8 +66,9 @@ export const StartGameScreen = () => {
                 {isConfirmed && selectedNumber && (
                     <View style={styles.confirmationBox}>
                         <Card>
-                            <Text >You Selected</Text>
+                            <Text>You Selected</Text>
                             <Number number={selectedNumber} />
+                            <Button title={'START GAME'} onPress={() => setUserNumber(selectedNumber)} color={Theme.colors.primary}/>
                         </Card>
                     </View>
                 )}

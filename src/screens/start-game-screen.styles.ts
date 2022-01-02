@@ -20,6 +20,6 @@ export const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     confirmationBox: {
-        marginTop: 24,
+        marginTop: 56,
     },
 })
