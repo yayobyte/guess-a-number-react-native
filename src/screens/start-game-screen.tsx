@@ -14,6 +14,9 @@ import {Number} from '../components/Number/number';
 import {Theme} from '../theme/theme'
 import {Input} from "../components/input/input";
 import {useState} from "react";
+import React from "react";
+import { PageTitle } from "../components/page-title/page-title";
+import { BodyText } from "../components/body-text/body-text";
 
 type StartGameScreenProps = {
     setUserNumber: (userSelection: number) => void,
@@ -50,9 +53,9 @@ export const StartGameScreen = ({ setUserNumber }: StartGameScreenProps) => {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Start a New Game!</Text>
+                <PageTitle title={'Start a New Game!'} />
                 <Card>
-                    <Text>Select a Number</Text>
+                    <BodyText>Select a Number</BodyText>
                     <Input value={enteredValue} onChange={onHandleChange}/>
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
@@ -66,7 +69,7 @@ export const StartGameScreen = ({ setUserNumber }: StartGameScreenProps) => {
                 {isConfirmed && selectedNumber && (
                     <View style={styles.confirmationBox}>
                         <Card>
-                            <Text>You Selected</Text>
+                            <BodyText>You Selected</BodyText>
                             <Number number={selectedNumber} />
                             <Button title={'START GAME'} onPress={() => setUserNumber(selectedNumber)} color={Theme.colors.primary}/>
                         </Card>

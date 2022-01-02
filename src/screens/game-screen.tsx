@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
+import { BodyText } from '../components/body-text/body-text';
 import { Card } from '../components/card/card';
 import { Number } from '../components/Number/number';
+import { PageTitle } from '../components/page-title/page-title';
 import { Theme } from '../theme/theme';
 import { generateRandomBetween } from '../utils/generate-random-between';
 import { styles } from './game-screen.styles';
@@ -55,20 +57,18 @@ export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) =
 
     return (
         <View style={styles.screen}>
-            <View>
-                <Text style={styles.header}>Opponent's Guess</Text>
-            </View>
+            <PageTitle title={'Opponent\'s Guess'} />
             <Number number={currentGuess} />
-            <Card>
-                <View style={styles.cardContainer}>
-                    <View style={styles.buttonContainer}>
-                        <Button title={'Lower'} onPress={() => nextGuessHandler(Direction.lower)} color={Theme.colors.primary}/>
-                        <Button title={'Greater'} onPress={() => nextGuessHandler(Direction.greater)} color={Theme.colors.primary}/>
-                    </View>
-                </View>
-            </Card>
+            <View style={styles.cardContainer}>
+                <Card>
+                        <View style={styles.buttonContainer}>
+                            <Button title={'Lower'} onPress={() => nextGuessHandler(Direction.lower)} color={Theme.colors.primary}/>
+                            <Button title={'Greater'} onPress={() => nextGuessHandler(Direction.greater)} color={Theme.colors.primary}/>
+                        </View>
+                </Card>
+            </View>
             <View style={styles.attemptsContainer}>
-                <Text>Number of attepmts</Text>
+                <BodyText>Number of attepmts</BodyText>
                 <Text style={styles.attempts}>{rounds}</Text>
             </View>
         </View>

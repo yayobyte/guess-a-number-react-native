@@ -12,14 +12,16 @@ export const styles = StyleSheet.create({
         marginVertical: 20,
     },
     buttonContainer: {
-        marginTop: 24,
         flexDirection: 'row',
         justifyContent: 'space-around',
+        alignItems: 'center',
         maxWidth: '80%',
         width: 300,
     },
     cardContainer: {
-        alignItems: 'center'
+        marginTop: 26,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     attemptsContainer: {
         marginVertical: 36,
