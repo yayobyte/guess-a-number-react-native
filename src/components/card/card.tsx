@@ -2,7 +2,7 @@ import {View} from "react-native";
 import {styles} from "./card.styles";
 
 type CardProps = {
-    children: JSX.Element[],
+    children: JSX.Element[] | JSX.Element,
 }
 
 export const Card = ({ children }: CardProps) => {

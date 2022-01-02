@@ -18,5 +18,8 @@ export const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 10,
-    }
+    },
+    confirmationBox: {
+        marginTop: 24,
+    },
 })
