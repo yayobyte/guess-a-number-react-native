@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import { Theme } from '../theme/theme';
 
 export const styles = StyleSheet.create({
@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     attemptsContainer: {
+        display: Dimensions.get('window').width < 360 ? 'none' : 'flex',
         marginVertical: 36,
         alignItems: 'center',
     },

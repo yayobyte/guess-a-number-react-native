@@ -23,7 +23,7 @@ enum Direction {
 const initialLow = 1;
 const initialHigh = 100;
 
-export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) => {
+export const GameScreen = ({userChoice, onGameOverHandler}: GameScreenProps) => {
     const randomNumber = generateRandomBetween(initialLow, initialHigh, userChoice);
 
     const [currentGuess, setCurrentGuess] = useState(randomNumber)
@@ -34,17 +34,17 @@ export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) =
     const nextGuessHandler = (direction: Direction) => {
         const isMistakenClickLower = (currentGuess < userChoice) && direction === Direction.lower;
         const isMistakenClickGreater = (currentGuess > userChoice) && direction === Direction.greater;
-        if( isMistakenClickGreater || isMistakenClickLower ){
-            Alert.alert('Please do not lie!', 'You know this option is wrong', [{ text: 'Sorry!', style: 'cancel'}])
+        if (isMistakenClickGreater || isMistakenClickLower) {
+            Alert.alert('Please do not lie!', 'You know this option is wrong', [{text: 'Sorry!', style: 'cancel'}])
             return;
         }
         let newRandomNumber: number;
-        if(direction === Direction.lower) {
+        if (direction === Direction.lower) {
             newRandomNumber = generateRandomBetween(currentLow, currentGuess, userChoice);
             setCurrentGuess(newRandomNumber);
             setCurrentHigh(currentGuess);
         }
-        if(direction === Direction.greater) {
+        if (direction === Direction.greater) {
             newRandomNumber = generateRandomBetween(currentGuess, currentHigh, userChoice);
             setCurrentGuess(newRandomNumber);
             setCurrentLow(currentGuess);
@@ -53,16 +53,16 @@ export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) =
     }
 
     useEffect(() => {
-        if(currentGuess === userChoice) {
+        if (currentGuess === userChoice) {
             onGameOverHandler(pastGuesses.length)
         }
     }, [currentGuess, userChoice])
 
     return (
         <View style={styles.screen}>
-            <PageTitle title={'Opponent\'s Guess'} />
+            <PageTitle title={'Opponent\'s Guess'}/>
             <View style={styles.container}>
-                <Number number={currentGuess} />
+                <Number number={currentGuess}/>
                 <View style={styles.buttonContainer}>
                     <MainButton
                         onPress={() => nextGuessHandler(Direction.lower)}
@@ -78,7 +78,7 @@ export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) =
                 <BodyText>Number of attempts</BodyText>
                 <Text style={styles.attempts}>{pastGuesses.length}</Text>
             </View>
-            <List list={pastGuesses} />
+            <List list={pastGuesses}/>
         </View>
     )
 }

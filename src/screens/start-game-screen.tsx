@@ -1,4 +1,4 @@
-import {Alert, Keyboard, TouchableWithoutFeedback, View} from "react-native";
+import {Alert, Keyboard, KeyboardAvoidingView, ScrollView, TouchableWithoutFeedback, View} from "react-native";
 import {styles} from "./start-game-screen.styles";
 import {Card} from "../components/ui/card/card";
 import {Number} from '../components/number/number';
@@ -43,43 +43,47 @@ export const StartGameScreen = ({setUserNumber}: StartGameScreenProps) => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <View style={styles.screen}>
-                <PageTitle title={'Start a New Game!'}/>
-                <Card>
-                    <BodyText>Input a 2 digit number</BodyText>
-                    <Input value={enteredValue} onChange={onHandleChange}/>
-                    <View style={styles.buttonContainer}>
-                        <View style={styles.primary}>
-                            <SecondaryButton
-                                title={'Reset'}
-                                onPress={onResetHandler}
-                                icon={<MaterialCommunityIcons name={'restart'} size={Theme.fontSize.paragraph} />}
-                            />
-                        </View>
-                        <View style={styles.primary}>
-                            <MainButton
-                                title={'Confirm'}
-                                onPress={() => onConfirmHandler()}
-                                icon={<MaterialCommunityIcons name={'check-outline'} size={Theme.fontSize.paragraph}/>}
-                            />
-                        </View>
+        <ScrollView>
+            <KeyboardAvoidingView behavior={'padding'} keyboardVerticalOffset={30}>
+                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                    <View style={styles.screen}>
+                        <PageTitle title={'Start a New Game!'}/>
+                        <Card>
+                            <BodyText>Input a 2 digit number</BodyText>
+                            <Input value={enteredValue} onChange={onHandleChange}/>
+                            <View style={styles.buttonContainer}>
+                                <View style={styles.primary}>
+                                    <SecondaryButton
+                                        title={'Reset'}
+                                        onPress={onResetHandler}
+                                        icon={<MaterialCommunityIcons name={'restart'}
+                                                                      size={Theme.fontSize.paragraph}/>}
+                                    />
+                                </View>
+                                <View style={styles.primary}>
+                                    <MainButton
+                                        title={'Confirm'}
+                                        onPress={() => onConfirmHandler()}
+                                        icon={<MaterialCommunityIcons name={'check-outline'}
+                                                                      size={Theme.fontSize.paragraph}/>}
+                                    />
+                                </View>
+                            </View>
+                        </Card>
+                        {isConfirmed && selectedNumber && (
+                            <View style={styles.confirmationBox}>
+                                <BodyText>You Selected</BodyText>
+                                <Number number={selectedNumber}/>
+                                <MainButton
+                                    title={'Start Game!'}
+                                    onPress={() => setUserNumber(selectedNumber)}
+                                    icon={<MaterialCommunityIcons name={'gamepad-up'} size={Theme.fontSize.paragraph}/>}
+                                />
+                            </View>
+                        )}
                     </View>
-                </Card>
-                {isConfirmed && selectedNumber && (
-                    <View style={styles.confirmationBox}>
-
-                            <BodyText>You Selected</BodyText>
-                            <Number number={selectedNumber}/>
-                            <MainButton
-                                title={'Start Game!'}
-                                onPress={() => setUserNumber(selectedNumber)}
-                                icon={<MaterialCommunityIcons name={'gamepad-up'} size={Theme.fontSize.paragraph} />}
-                            />
-
-                    </View>
-                )}
-            </View>
-        </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </ScrollView>
     )
 }
