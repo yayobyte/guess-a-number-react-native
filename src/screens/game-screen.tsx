@@ -7,7 +7,8 @@ import {generateRandomBetween} from '../utils/generate-random-between';
 import {styles} from './game-screen.styles';
 import {MainButton} from '../components/ui/main-button/main-button';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
-import { Theme } from '../theme/theme';
+import {Theme} from '../theme/theme';
+import {List} from "../components/list/list";
 
 type GameScreenProps = {
     userChoice: number,
@@ -28,7 +29,7 @@ export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) =
     const [currentGuess, setCurrentGuess] = useState(randomNumber)
     const [currentLow, setCurrentLow] = useState(initialLow);
     const [currentHigh, setCurrentHigh] = useState(initialHigh)
-    const [rounds, setRounds] = useState(0);
+    const [pastGuesses, setPastGuesses] = useState<string[]>([`1 => ${randomNumber}`]);
 
     const nextGuessHandler = (direction: Direction) => {
         const isMistakenClickLower = (currentGuess < userChoice) && direction === Direction.lower;
@@ -37,22 +38,23 @@ export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) =
             Alert.alert('Please do not lie!', 'You know this option is wrong', [{ text: 'Sorry!', style: 'cancel'}])
             return;
         }
+        let newRandomNumber: number;
         if(direction === Direction.lower) {
-            const newRandomNumber = generateRandomBetween(currentLow, currentGuess, userChoice);
+            newRandomNumber = generateRandomBetween(currentLow, currentGuess, userChoice);
             setCurrentGuess(newRandomNumber);
             setCurrentHigh(currentGuess);
         }
         if(direction === Direction.greater) {
-            const newRandomNumber = generateRandomBetween(currentGuess, currentHigh, userChoice);
+            newRandomNumber = generateRandomBetween(currentGuess, currentHigh, userChoice);
             setCurrentGuess(newRandomNumber);
             setCurrentLow(currentGuess);
         }
-        setRounds(prev => prev + 1);
+        setPastGuesses(prev => [`${prev.length + 1} => ${newRandomNumber}`, ...prev])
     }
 
     useEffect(() => {
         if(currentGuess === userChoice) {
-            onGameOverHandler(rounds)
+            onGameOverHandler(pastGuesses.length)
         }
     }, [currentGuess, userChoice])
 
@@ -73,9 +75,10 @@ export const GameScreen = ({ userChoice, onGameOverHandler }: GameScreenProps) =
                 </View>
             </View>
             <View style={styles.attemptsContainer}>
-                <BodyText>Number of attepmts</BodyText>
-                <Text style={styles.attempts}>{rounds}</Text>
+                <BodyText>Number of attempts</BodyText>
+                <Text style={styles.attempts}>{pastGuesses.length}</Text>
             </View>
+            <List list={pastGuesses} />
         </View>
     )
 }

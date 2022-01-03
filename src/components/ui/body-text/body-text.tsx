@@ -1,8 +1,8 @@
 import { Text } from 'react-native';
 import { styles } from './body-text.style';
 
-type BodyTextProps = {
-    children: string,
+export type BodyTextProps = {
+    children: string | number,
 }
 
 export const BodyText = ({ children }: BodyTextProps) => (
