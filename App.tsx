@@ -8,6 +8,7 @@ import {GameOver} from './src/screens/game-over';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { Theme } from './src/theme/theme';
+import {LinearGradient} from "expo-linear-gradient";
 
 const fetchFonts = () => {
     return Font.loadAsync({
@@ -48,12 +49,14 @@ export default function App() {
 
     return (
         <SafeAreaView style={styles.screen}>
-            <Header title={'Guess A Number'}/>
-            {!userNumber && !isGameOver && <StartGameScreen setUserNumber={startGameHandler}/>}
-            {userNumber !== 0 && !isGameOver &&
-            <GameScreen userChoice={userNumber ?? 0} onGameOverHandler={onGameOverHandler}/>}
-            {isGameOver && <GameOver rounds={rounds} userNumber={userNumber} startOverHandler={startOverHandler}/>}
-            <StatusBar style="auto"/>
+            <LinearGradient colors={['#ffffff', '#F4A6B8']} style={{ flex: 1 }}>
+                <Header title={'Guess A Number'}/>
+                {!userNumber && !isGameOver && <StartGameScreen setUserNumber={startGameHandler}/>}
+                {userNumber !== 0 && !isGameOver &&
+                <GameScreen userChoice={userNumber ?? 0} onGameOverHandler={onGameOverHandler}/>}
+                {isGameOver && <GameOver rounds={rounds} userNumber={userNumber} startOverHandler={startOverHandler}/>}
+                <StatusBar style="auto"/>
+            </LinearGradient>
         </SafeAreaView>
     );
 }
