@@ -5,23 +5,22 @@ import {Header} from "./src/components/ui/header/header";
 import {StartGameScreen} from "./src/screens/start-game-screen";
 import {GameScreen} from './src/screens/game-screen';
 import {GameOver} from './src/screens/game-over';
-import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { Theme } from './src/theme/theme';
 import {LinearGradient} from "expo-linear-gradient";
 
-const fetchFonts = () => {
-    return Font.loadAsync({
-        [Theme.fontFamily.openSansBold]: require('./src/assets/fonts/OpenSans-Bold.ttf'),
-        [Theme.fontFamily.openSans]: require('./src/assets/fonts/OpenSans-Regular.ttf'),
-    });
+const fontsConfigurationObject = {
+    [Theme.fontFamily.openSansBold]: require('./src/assets/fonts/OpenSans-Bold.ttf'),
+    [Theme.fontFamily.openSans]: require('./src/assets/fonts/OpenSans-Regular.ttf'),
 }
 
 export default function App() {
+    const [fontsLoaded] = useFonts(fontsConfigurationObject)
+
     const [userNumber, setUserNumber] = useState(0);
     const [isGameOver, setIsGameOver] = useState(false);
     const [rounds, setRounds] = useState(0);
-    const [appLoaded, setAppLoaded] = useState(false);
 
     const startGameHandler = (userSelected: number) => {
         setUserNumber(userSelected);
@@ -37,13 +36,9 @@ export default function App() {
         setUserNumber(0)
     }
 
-    if (!appLoaded) {
+    if (!fontsLoaded) {
         return (
-            <AppLoading
-                startAsync={fetchFonts}
-                onFinish={() => setAppLoaded(true)}
-                onError={(err) => console.error('Initial Error: error loading the app', err)}
-            />
+            <AppLoading />
         )
     }
 
