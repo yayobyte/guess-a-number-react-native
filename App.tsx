@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {Header} from "./src/components/ui/header/header";
 import {StartGameScreen} from "./src/screens/start-game-screen";
 import {GameScreen} from './src/screens/game-screen';
@@ -48,16 +48,16 @@ export default function App() {
     }
 
     return (
-        <View style={styles.screen}>
-            <LinearGradient colors={['#ffffff', '#F4A6B8']} style={{ flex: 1 }}>
+        <LinearGradient colors={[Theme.colors.white, Theme.colors.lightRose]} style={{ flex: 1 }}>
+            <SafeAreaView style={styles.screen}>
                 <Header title={'Guess A Number'}/>
                 {!userNumber && !isGameOver && <StartGameScreen setUserNumber={startGameHandler}/>}
                 {userNumber !== 0 && !isGameOver &&
                 <GameScreen userChoice={userNumber ?? 0} onGameOverHandler={onGameOverHandler}/>}
                 {isGameOver && <GameOver rounds={rounds} userNumber={userNumber} startOverHandler={startOverHandler}/>}
                 <StatusBar style="auto"/>
-            </LinearGradient>
-        </View>
+            </SafeAreaView>
+        </LinearGradient>
     );
 }
 

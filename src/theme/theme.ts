@@ -3,6 +3,8 @@ export const Theme = {
         accent: '#C717FC',
         primary: '#F7287B',
         lightGray: '#DFDFDF',
+        lightRose: '#F4A6B8',
+        white: '#FFFFFF',
     },
     fontFamily: {
         openSans: 'open-sans',
