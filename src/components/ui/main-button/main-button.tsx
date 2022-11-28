@@ -13,8 +13,9 @@ interface BasicButtonProps extends ButtonProps {
     color: typeof Theme.colors.primary | typeof Theme.colors.accent,
 }
 
+const Button = (props: any) => Platform.OS === OS.ios ? <TouchableOpacity {...props}/> : <TouchableNativeFeedback {...props}/>
+
 const BasicButton = ({ title, onPress, icon, color }: BasicButtonProps) => {
-    const Button = (props: any) => Platform.OS === OS.ios ? <TouchableOpacity {...props}/> : <TouchableNativeFeedback {...props}/>
     return (
         <Button onPress={onPress} activeOpacity={0.5}>
             <View style={{...styles.container, borderColor: color}}>
