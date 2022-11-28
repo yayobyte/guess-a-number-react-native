@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StatusBar} from 'expo-status-bar';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Header} from "./src/components/ui/header/header";
 import {StartGameScreen} from "./src/screens/start-game-screen";
 import {GameScreen} from './src/screens/game-screen';
@@ -48,7 +48,7 @@ export default function App() {
     }
 
     return (
-        <SafeAreaView style={styles.screen}>
+        <View style={styles.screen}>
             <LinearGradient colors={['#ffffff', '#F4A6B8']} style={{ flex: 1 }}>
                 <Header title={'Guess A Number'}/>
                 {!userNumber && !isGameOver && <StartGameScreen setUserNumber={startGameHandler}/>}
@@ -57,7 +57,7 @@ export default function App() {
                 {isGameOver && <GameOver rounds={rounds} userNumber={userNumber} startOverHandler={startOverHandler}/>}
                 <StatusBar style="auto"/>
             </LinearGradient>
-        </SafeAreaView>
+        </View>
     );
 }
 
